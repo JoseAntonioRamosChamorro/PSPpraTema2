@@ -72,6 +72,7 @@ public class HiloCamello extends Thread
 			try
 			{
 				Thread.sleep(500);
+				System.out.println();
 				System.out.println("El Camello " + nombre + " ha ganado la carrera");
 				System.out.println("El ranking ha quedado del siguiente modo:");
 			}
