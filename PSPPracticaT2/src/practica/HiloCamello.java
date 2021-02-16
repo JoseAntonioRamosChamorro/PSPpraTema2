@@ -36,7 +36,7 @@ public class HiloCamello extends Thread
 		if(fin == true)
 		{
 
-			System.out.println("El Camello " + nombre + " a " + (Principal.recorrido - camello.getposicionActual() + " puntos del primero"));
+			System.out.println("El Camello " + nombre + " avanza " + (Principal.recorrido - camello.getposicionActual() + " posiciones del líder"));
 		}
 		Thread.interrupted();
 	}
@@ -44,21 +44,22 @@ public class HiloCamello extends Thread
 	//Muestra el avance de la carrera
 	public synchronized void proceso()
 	{
-		int puntos = tirada();
-		int avance = avanceCamello(puntos);
+		int posicion = tirada();
+		int avance = avanceCamello(posicion);
 		camello.SetPosicion(avance);
 		String carrera= "";
 		if(fin == false)
 		{
-			carrera = "El Camello " + nombre + " gana " + puntos + " y lleva " + camello.getposicionActual()+ " puntos";
+			carrera = "El Camello " + nombre + " avanza " + posicion + " y lleva " + camello.getposicionActual()+ " posiciones";
 			camelloEnCabeza();
+			//diferenciar el primero del resto
 			if(camello.getposicionActual() == primero)
-			{
+			{//si es el primero entrara aqui
 				carrera = carrera + "y va en primera posición.";
 			}
 			else
-			{
-				carrera = carrera + "a " + (primero - camello.getposicionActual()) + " puntos del primero";
+			{//si es otro que no sea el primero entrara aqui
+				carrera = carrera + "a " + (primero - camello.getposicionActual()) + " posiciones del primero";
 			}
 			System.out.println(carrera);
 		}
@@ -71,9 +72,8 @@ public class HiloCamello extends Thread
 			try
 			{
 				Thread.sleep(500);
-				System.out.println("META");
-				System.out.println("El Camello " + nombre + " ganó");
-				System.out.println("Ranking:");
+				System.out.println("El Camello " + nombre + " ha ganado la carrera");
+				System.out.println("El ranking ha quedado del siguiente modo:");
 			}
 			catch (InterruptedException e)
 			{
